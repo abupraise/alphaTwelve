@@ -11,7 +11,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
-
 import { slides } from "../data";
 
 const Overlay = styled.div`
@@ -19,7 +18,7 @@ const Overlay = styled.div`
   top: -0.1rem;
   left: 0;
   right: 0;
-  bottom: .6rem;
+  bottom: 0.6rem;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 1;
   border-radius: 1rem;
@@ -36,7 +35,7 @@ const CarouselWrapper = styled.div`
 const SlidesContainer = styled.div`
   display: flex;
   transition: transform 0.5s ease;
-  transform: translateX(${props => props.translate}%);
+  transform: translateX(${(props) => props.translate}%);
 `;
 
 const Slide = styled.div`
@@ -52,6 +51,11 @@ const Content = styled.div`
   max-width: 90%;
   white-space: normal;
   color: var(--theme-btn-color);
+
+  @media (max-width: 768px) {
+    bottom: 2rem;
+    left: 1rem;
+  }
 `;
 
 const SlideImage = styled.img`
@@ -86,6 +90,26 @@ const SlideTextDescription = styled.p`
   font-size: 1.2rem;
   font-weight: 400;
   margin: 0;
+
+  @media (max-width: 768px) {
+    display: inline-block;
+    overflow: hidden;
+    white-space: ${(props) => (props.expanded ? "normal" : "nowrap")};
+    text-overflow: ${(props) => (props.expanded ? "unset" : "ellipsis")};
+    max-width: ${(props) => (props.expanded ? "100%" : "75%")};
+  }
+`;
+
+const SeeMore = styled.span`
+  color: var(--theme-btn-color);
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  text-decoration: underline;
+
+  @media (min-width: 768px) {
+    display: none; // Hide the 'See More' on larger screens
+  }
 `;
 
 const NavigationButton = styled.button`
@@ -100,7 +124,7 @@ const NavigationButton = styled.button`
   cursor: pointer;
   z-index: 2;
   padding: 0.5rem;
-  
+
   &:hover {
     color: var(--color-purple-500);
   }
@@ -128,6 +152,7 @@ const Dot = styled.span`
 
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [expandedSlide, setExpandedSlide] = useState(null); // Track expanded slide for "See More"
 
   useEffect(() => {
     const slideInterval = setInterval(() => {
@@ -149,6 +174,10 @@ const Carousel = () => {
     setCurrentSlide(index);
   };
 
+  const toggleSeeMore = (index) => {
+    setExpandedSlide(expandedSlide === index ? null : index); // Toggle between showing more or less
+  };
+
   return (
     <CarouselWrapper>
       <SlidesContainer translate={-currentSlide * 100}>
@@ -159,7 +188,14 @@ const Carousel = () => {
             <SlideContent>
               <Content>
                 <SlideTextTitle>{slide.text}</SlideTextTitle>
-                <SlideTextDescription>{slide.description}</SlideTextDescription>
+                <SlideTextDescription expanded={expandedSlide === index}>
+                  {slide.description}
+                  {expandedSlide !== index && (
+                    <SeeMore onClick={() => toggleSeeMore(index)}>
+                      See More
+                    </SeeMore>
+                  )}
+                </SlideTextDescription>
               </Content>
             </SlideContent>
           </Slide>
