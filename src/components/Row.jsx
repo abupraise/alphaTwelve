@@ -1,3 +1,13 @@
+/*
+===============================================================================
+  Project Name:    Alpha Twelve
+  File:            Row.jsx
+  Author:          Praise Abu
+  Created on:      2024-10-24
+  Last modified:   2024-10-24
+===============================================================================
+*/
+
 import styled, { css } from "styled-components";
 
 const Row = styled.div`

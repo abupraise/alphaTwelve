@@ -1,3 +1,13 @@
+/*
+===============================================================================
+  Project Name:    Alpha Twelve
+  File:            App.jsx
+  Author:          Praise Abu
+  Created on:      2024-10-24
+  Last modified:   2024-10-24
+===============================================================================
+*/
+
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import GlobalStyles from "./styles/GlobalStyles";

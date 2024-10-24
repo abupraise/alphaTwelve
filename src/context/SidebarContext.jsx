@@ -1,3 +1,13 @@
+/*
+===============================================================================
+  Project Name:    Alpha Twelve
+  File:            SidebarContext.jsx
+  Author:          Praise Abu
+  Created on:      2024-10-24
+  Last modified:   2024-10-24
+===============================================================================
+*/
+
 import { createContext, useContext, useState } from "react";
 
 const SidebarContext = createContext();

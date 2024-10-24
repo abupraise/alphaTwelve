@@ -1,3 +1,13 @@
+/*
+===============================================================================
+  Project Name:    Alpha Twelve
+  File:            useLocalStorageState.js
+  Author:          Praise Abu
+  Created on:      2024-10-24
+  Last modified:   2024-10-24
+===============================================================================
+*/
+
 import { useState, useEffect } from "react";
 
 export function useLocalStorageState(initialState, key) {

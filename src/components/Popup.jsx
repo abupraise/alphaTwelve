@@ -1,3 +1,13 @@
+/*
+===============================================================================
+  Project Name:    Alpha Twelve
+  File:            Popup.jsx
+  Author:          Praise Abu
+  Created on:      2024-10-24
+  Last modified:   2024-10-24
+===============================================================================
+*/
+
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { IoIosClose } from "react-icons/io";

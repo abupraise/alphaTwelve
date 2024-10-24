@@ -1,3 +1,13 @@
+/*
+===============================================================================
+  Project Name:    Alpha Twelve
+  File:            NewsCarousel.jsx
+  Author:          Praise Abu
+  Created on:      2024-10-24
+  Last modified:   2024-10-24
+===============================================================================
+*/
+
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";

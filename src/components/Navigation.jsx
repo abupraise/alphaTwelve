@@ -1,3 +1,13 @@
+/*
+===============================================================================
+  Project Name:    Alpha Twelve
+  File:            Navigation.jsx
+  Author:          Praise Abu
+  Created on:      2024-10-24
+  Last modified:   2024-10-24
+===============================================================================
+*/
+
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { FiHome, FiSettings } from "react-icons/fi";

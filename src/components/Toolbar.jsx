@@ -1,3 +1,13 @@
+/*
+===============================================================================
+  Project Name:    Alpha Twelve
+  File:            Toolbar.jsx
+  Author:          Praise Abu
+  Created on:      2024-10-24
+  Last modified:   2024-10-24
+===============================================================================
+*/
+
 import styled from "styled-components";
 import { FiSearch, FiChevronDown, FiDownload } from "react-icons/fi";
 import { useDarkMode } from "../context/DarkModeContext";

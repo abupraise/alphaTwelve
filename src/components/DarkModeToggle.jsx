@@ -1,3 +1,13 @@
+/*
+===============================================================================
+  Project Name:    Alpha Twelve
+  File:            DarkModeToggle.jsx
+  Author:          Praise Abu
+  Created on:      2024-10-24
+  Last modified:   2024-10-24
+===============================================================================
+*/
+
 import styled from "styled-components";
 import { useDarkMode } from "../context/DarkModeContext";
 import { useSidebar } from "../context/SidebarContext";
