@@ -63,7 +63,6 @@ const AccordionContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background-color: green; */
 `;
 
 const MobileRow = styled.div`
@@ -244,11 +243,11 @@ const RowsDropdown = styled.select`
 const AccordionEventTable = () => {
   const { isDarkMode } = useDarkMode();
   const [currentPage, setCurrentPage] = useState(1);
-  const [openIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupEvent, setPopupEvent] = useState(null);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const rowsPerPage = 5;
   const totalPages = Math.ceil(events.length / rowsPerPage);
   const currentData = events.slice(
     (currentPage - 1) * rowsPerPage,
@@ -271,6 +270,15 @@ const AccordionEventTable = () => {
     setPopupEvent(null);
   };
 
+  const toggleAccordion = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const handleRowsChange = (e) => {
+    setRowsPerPage(Number(e.target.value));
+    setCurrentPage(1);
+  };
+
   return (
     <AccordionContainer>
       <HeaderRow>
@@ -283,7 +291,7 @@ const AccordionEventTable = () => {
       {currentData.map((event, index) => (
         <div key={index}>
           <AccordionItem onClick={() => handlePopupOpen(event)}>
-            <AccordionContent>
+          <AccordionContent>
               <Column isOpen={openIndex === index}>{event.name}</Column>
               <Column>{event.speaker}</Column>
               <Column>{event.date}</Column>
@@ -313,9 +321,9 @@ const AccordionEventTable = () => {
           >
             &lt;
           </PageButton>
-          {Array.from({ length: Math.min(4, totalPages) }, (_, index) => {
-            const pageNumber = currentPage + index - 1;
-            return pageNumber > 0 ? (
+          {Array.from({ length: totalPages }, (_, index) => {
+            const pageNumber = index + 1;
+            return (
               <span
                 key={pageNumber}
                 className={pageNumber === currentPage ? "active" : "inactive"}
@@ -323,7 +331,7 @@ const AccordionEventTable = () => {
               >
                 {pageNumber}
               </span>
-            ) : null;
+            );
           })}
           <PageButton
             disabled={currentPage === totalPages}
@@ -335,7 +343,11 @@ const AccordionEventTable = () => {
 
         <DropdownContainer>
           <span>Show:</span>
-          <RowsDropdown isActive={isDarkMode}>
+          <RowsDropdown
+            value={rowsPerPage}
+            onChange={handleRowsChange}
+            isActive={isDarkMode}
+          >
             <option value="5">5 rows</option>
             <option value="10">10 rows</option>
             <option value="15">15 rows</option>
