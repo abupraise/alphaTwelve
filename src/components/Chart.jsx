@@ -81,8 +81,11 @@ const BarChart = () => {
         color: isDarkMode ? "#FCF7FF" : "#ADA9BB",
       },
       tooltip: {
-        bodyColor: isDarkMode ? "#FCF7FF" : "#ADA9BB",
-        backgroundColor: isDarkMode ? "#ADA9BB" : "#FCF7FF",
+        bodyColor: isDarkMode ? "#FCF7FF" : "#484554",
+        backgroundColor: isDarkMode ? "#484554" : "#FCF7FF",
+        titleColor: isDarkMode ? "#FCF7FF" : "#484554",
+        borderColor: isDarkMode ? "#ADA9BB" : "#333333",
+        borderWidth: 1,
       },
     },
     scales: {
