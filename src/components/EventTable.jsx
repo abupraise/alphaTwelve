@@ -12,7 +12,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { events } from "../data";
 import { useDarkMode } from "../context/DarkModeContext";
-import Popup from "./Popup";
+import Popup from "./Modal";
 
 const AccordionContainer = styled.div`
   display: flex;
