@@ -7,7 +7,7 @@ import { useDarkMode } from "../context/DarkModeContext";
 import BarChart from "../components/Chart";
 import Carousel from "../components/NewsCarousel";
 import Toolbar from "../components/Toolbar";
-import AccordionEventTable from "../components/AccordionEventTable";
+import AccordionEventTable from "../components/EventTable";
 
 const Card = styled.div`
   background-color: var(--color-grey-0);
