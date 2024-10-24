@@ -20,12 +20,7 @@ const Overlay = styled.div`
   left: 0;
   right: 0;
   bottom: .6rem;
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.3
-  );
+  background-color: rgba(0, 0, 0, 0.3);
   z-index: 1;
   border-radius: 1rem;
 `;
@@ -38,9 +33,14 @@ const CarouselWrapper = styled.div`
   overflow: hidden;
 `;
 
+const SlidesContainer = styled.div`
+  display: flex;
+  transition: transform 0.5s ease;
+  transform: translateX(${props => props.translate}%);
+`;
+
 const Slide = styled.div`
-  display: ${(props) => (props.active ? "block" : "none")};
-  transition: opacity 0.5s ease-in-out;
+  flex: 0 0 100%;
   position: relative;
 `;
 
@@ -151,18 +151,20 @@ const Carousel = () => {
 
   return (
     <CarouselWrapper>
-      {slides.map((slide, index) => (
-        <Slide key={index} active={index === currentSlide}>
-          <SlideImage src={slide.image} alt={slide.text} />
-          <Overlay />
-          <SlideContent>
-            <Content>
-              <SlideTextTitle>{slide.text}</SlideTextTitle>
-              <SlideTextDescription>{slide.description}</SlideTextDescription>
-            </Content>
-          </SlideContent>
-        </Slide>
-      ))}
+      <SlidesContainer translate={-currentSlide * 100}>
+        {slides.map((slide, index) => (
+          <Slide key={index}>
+            <SlideImage src={slide.image} alt={slide.text} />
+            <Overlay />
+            <SlideContent>
+              <Content>
+                <SlideTextTitle>{slide.text}</SlideTextTitle>
+                <SlideTextDescription>{slide.description}</SlideTextDescription>
+              </Content>
+            </SlideContent>
+          </Slide>
+        ))}
+      </SlidesContainer>
 
       <NavigationButton style={{ left: "2rem" }} onClick={prevSlide}>
         <RxCaretLeft />
