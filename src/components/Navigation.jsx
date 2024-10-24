@@ -16,7 +16,7 @@ import {
   IoDocumentTextOutline,
   IoChatbubblesOutline,
 } from "react-icons/io5";
-import { BiUserVoice } from "react-icons/bi";
+import { BiUserCircle, BiUserVoice } from "react-icons/bi";
 import { GoBell } from "react-icons/go";
 import { CgChevronDoubleLeft, CgChevronDoubleRight } from "react-icons/cg";
 import DarkModeToggle from "./DarkModeToggle";
@@ -296,7 +296,7 @@ function MainNav({ isMobileMenuOpen, closeMobileNav }) {
           <span>Reports</span>
         </BottomNavItem>
         <BottomNavItem to="/profile" isCollapsed={isCollapsed}>
-          <BiUserVoice />
+          <BiUserCircle />
           <span>Profile</span>
         </BottomNavItem>
       </BottomNav>
