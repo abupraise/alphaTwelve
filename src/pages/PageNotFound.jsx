@@ -8,50 +8,108 @@
 ===============================================================================
 */
 
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react'
+import { useMoveBack } from '../hooks/useMoveBack'
 
-import { useMoveBack } from "../hooks/useMoveBack";
-import Heading from "../components/Heading";
+export default function NotFound() {
+  const [isDarkMode, setIsDarkMode] = useState(false)
+  const moveBack = useMoveBack()
 
-const StyledPageNotFound = styled.main`
-  height: 100vh;
-  background-color: var(--color-grey-50);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4.8rem;
-`;
+  useEffect(() => {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setIsDarkMode(prefersDark)
+  }, [])
 
-const Box = styled.div`
-  /* box */
-  background-color: var(--color-grey-0);
-  border: 1px solid var(--color-grey-100);
-  border-radius: var(--border-radius-md);
+  const toggleTheme = () => setIsDarkMode(!isDarkMode)
 
-  padding: 4.8rem;
-  flex: 0 1 96rem;
-  text-align: center;
-
-  & h1 {
-    margin-bottom: 3.2rem;
+  const styles = {
+    container: {
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '2rem',
+      fontFamily: 'Arial, sans-serif',
+      transition: 'all 0.3s ease',
+      backgroundColor: isDarkMode ? '#1a1a1a' : '#f0f4f8',
+      color: isDarkMode ? '#ffffff' : '#333333',
+    },
+    box: {
+      backgroundColor: isDarkMode ? '#2a2a2a' : '#ffffff',
+      borderRadius: '12px',
+      padding: '3rem',
+      maxWidth: '500px',
+      width: '100%',
+      textAlign: 'center',
+      boxShadow: isDarkMode 
+        ? '0 4px 6px rgba(0, 0, 0, 0.2)' 
+        : '0 4px 6px rgba(0, 0, 0, 0.1)',
+      '@media (max-width: 768px)': {
+        padding: '2rem',
+        maxWidth: '90%',
+      },
+    },
+    heading: {
+      fontSize: '2.5rem',
+      marginBottom: '1.5rem',
+      color: isDarkMode ? '#9c88ff' : '#4a4a4a',
+      '@media (max-width: 768px)': {
+        fontSize: '2rem',
+      },
+    },
+    text: {
+      fontSize: '1.1rem',
+      marginBottom: '2rem',
+      lineHeight: '1.5',
+      '@media (max-width: 768px)': {
+        fontSize: '1rem',
+      },
+    },
+    button: {
+      backgroundColor: isDarkMode ? '#9c88ff' : '#3498db',
+      color: '#ffffff',
+      border: 'none',
+      padding: '0.8rem 1.5rem',
+      fontSize: '1rem',
+      borderRadius: '5px',
+      cursor: 'pointer',
+      transition: 'background-color 0.3s',
+      '@media (max-width: 768px)': {
+        padding: '0.7rem 1rem',
+      },
+    },
+    themeToggle: {
+      position: 'absolute',
+      top: '1rem',
+      right: '1rem',
+      backgroundColor: 'transparent',
+      border: 'none',
+      color: isDarkMode ? '#ffffff' : '#333333',
+      fontSize: '1.5rem',
+      cursor: 'pointer',
+    },
   }
-`;
-
-function PageNotFound() {
-  const moveBack = useMoveBack();
 
   return (
-    <StyledPageNotFound>
-      <Box>
-        <Heading as="h1">
+    <div style={styles.container}>
+      <button onClick={toggleTheme} style={styles.themeToggle}>
+        {isDarkMode ? '🌞' : '🌙'}
+      </button>
+      <div style={styles.box}>
+        <h1 style={styles.heading}>404</h1>
+        <p style={styles.text}>
           The page you are looking for could not be found 😢
-        </Heading>
-        <button onClick={moveBack} size="large">
-          &larr; Go back
+        </p>
+        <button 
+          onClick={moveBack}
+          style={styles.button}
+          onMouseEnter={(e) => e.target.style.backgroundColor = isDarkMode ? '#8066ff' : '#2980b9'}
+          onMouseLeave={(e) => e.target.style.backgroundColor = isDarkMode ? '#9c88ff' : '#3498db'}
+        >
+          ← Go back
         </button>
-      </Box>
-    </StyledPageNotFound>
-  );
+      </div>
+    </div>
+  )
 }
-
-export default PageNotFound;

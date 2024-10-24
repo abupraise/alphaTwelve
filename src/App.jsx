@@ -34,12 +34,12 @@ function App() {
             <Route element={<AppLayout />}>
               <Route index element={<Navigate replace to="dashboard" />} />
               <Route path="dashboard" element={<Dashboard />} />
-              <Route path="events" element={<Events />} />
+              {/* <Route path="events" element={<Events />} />
               <Route path="messages" element={<Messages />} />
               <Route path="notifications" element={<Notifications />} />
               <Route path="reports" element={<Reports />} />
               <Route path="settings" element={<Settings />} />
-              <Route path="speakers" element={<Speakers />} />
+              <Route path="speakers" element={<Speakers />} /> */}
             </Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>
