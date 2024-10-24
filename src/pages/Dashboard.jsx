@@ -74,8 +74,12 @@ const PercentageChange = styled.div`
   margin-top: 8px;
   display: flex;
   align-items: center;
-  color: ${({ isIncrease }) => (isIncrease ? "var(--color-green-600)" : "var(--color-red-600)")};
+  color: ${({ isIncrease }) =>
+    isIncrease ? "var(--color-green-600)" : "var(--color-red-600)"};
   font-size: 1.2rem;
+  font-weight: bold;
+  position: relative;
+  top: -.5rem;
 `;
 
 const StatGrid = styled.div`
@@ -83,8 +87,6 @@ const StatGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 1.6rem;
   margin: 2.5rem 0;
-
-  // Media query for mobile view
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -120,7 +122,15 @@ const StatCard = ({ title, value, percentage, isIncrease }) => {
       <ValueWrapper>
         <Value>{value}</Value>
         <PercentageChange isIncrease={isIncrease}>
-          {isIncrease ? <FiArrowUpRight /> : <FiArrowDownRight />}
+          {isIncrease ? (
+            <FiArrowUpRight strokeWidth={3}
+            style={{ marginLeft: ".7em" }}
+            />
+          ) : (
+            <FiArrowDownRight strokeWidth={3}
+            style={{ marginLeft: ".7em" }}
+            />
+          )}
           <span style={{ marginLeft: "8px" }}>{percentage}</span>
         </PercentageChange>
       </ValueWrapper>
