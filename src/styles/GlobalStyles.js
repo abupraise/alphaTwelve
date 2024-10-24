@@ -3,7 +3,6 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
 :root {
   &, &.light-mode {
-  /* Grey */
   --color-nav-0: #8576FF;
   --color-grey-0: #fff;
   --color-grey-00: #fff;
@@ -80,8 +79,6 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-
-  /* Creating animations for dark mode */
   transition: background-color 0.3s, border 0.3s;
 }
 
@@ -156,7 +153,6 @@ h6 {
 img {
   max-width: 100%;
 
-  /* For dark mode */
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
 

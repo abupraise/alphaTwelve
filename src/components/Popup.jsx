@@ -19,7 +19,7 @@ const PopupOverlay = styled.div`
 
 const PopupCard = styled.div`
   background: var(--color-grey-0);
-  border-radius: 0.2rem;
+  border-radius: 1.5rem;
   width: 55rem;
   box-shadow: 0px .4rem 1.5rem rgba(0, 0, 0, 0.1);
 
